@@ -1,0 +1,34 @@
+/* import 'Inter' font-family */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default;
+}
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+
+  --color-base-100: #f5f5f5;
+  --color-base-200: #ffffff;
+
+  --color-primary: #632ee3;
+  --color-secondary: #9f62f2;
+
+  --color-base-content: #001931;
+}
+
+/* font-family styles start*/
+.font-inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+/* font-family styles end*/
+
+/* custom container styles start */
+.custom-container {
+  width: 90%;
+  max-width: 1600px;
+}
+/* custom container styles end */
