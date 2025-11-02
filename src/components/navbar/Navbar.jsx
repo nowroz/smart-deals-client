@@ -1,12 +1,20 @@
 import { useContext } from "react";
-import navPaths from "../../navPaths/navPaths";
 import NavigationLink from "../navigationLink/NavigationLink";
+import { visibleNavPaths, hiddenNavPaths } from "../../navPath/navPath.js";
 import AuthContext from "../../contexts/AuthContext";
 import AuthButtons from "../authButtons/AuthButtons";
 import LoggedInUser from "../loggedInUser/LoggedInUser";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
+
+  const visibleNavLinks = visibleNavPaths.map((navPath) => (
+    <NavigationLink key={navPath.id} navPath={navPath}></NavigationLink>
+  ));
+
+  const hiddenNavLinks = hiddenNavPaths.map((navPath) => (
+    <NavigationLink key={navPath.id} navPath={navPath}></NavigationLink>
+  ));
 
   return (
     <nav className="custom-container mx-auto py-5 grid grid-cols-4">
@@ -17,9 +25,8 @@ const Navbar = () => {
         </span>
       </h3>
       <ul className="col-span-2 justify-self-center flex items-center gap-8">
-        {navPaths.map((navPath) => (
-          <NavigationLink key={navPath.id} navPath={navPath}></NavigationLink>
-        ))}
+        {visibleNavLinks}
+        {user && hiddenNavLinks}
       </ul>
       <div className="justify-self-end">
         {user ? (

@@ -4,6 +4,10 @@ import Home from "../pages/Home";
 import AllProducts from "../pages/AllProducts";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import PrivateRoute from "./PrivateRoute";
+import MyProducts from "../pages/MyProducts";
+import MyBids from "../pages/MyBids";
+import CreateProduct from "../pages/CreateProduct";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +29,30 @@ const router = createBrowserRouter([
       {
         path: "login",
         Component: Login,
+      },
+      {
+        path: "my-products",
+        element: (
+          <PrivateRoute>
+            <MyProducts></MyProducts>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-bids",
+        element: (
+          <PrivateRoute>
+            <MyBids></MyBids>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "create-product",
+        element: (
+          <PrivateRoute>
+            <CreateProduct></CreateProduct>
+          </PrivateRoute>
+        ),
       },
     ],
   },
