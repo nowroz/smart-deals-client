@@ -4,9 +4,10 @@ import { visibleNavPaths, hiddenNavPaths } from "../../navPath/navPath.js";
 import AuthContext from "../../contexts/AuthContext";
 import AuthButtons from "../authButtons/AuthButtons";
 import LoggedInUser from "../loggedInUser/LoggedInUser";
+import { BeatLoader, PropagateLoader, ScaleLoader } from "react-spinners";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, isLoading } = useContext(AuthContext);
 
   const visibleNavLinks = visibleNavPaths.map((navPath) => (
     <NavigationLink key={navPath.id} navPath={navPath}></NavigationLink>
@@ -26,10 +27,13 @@ const Navbar = () => {
       </h3>
       <ul className="col-span-2 justify-self-center flex items-center gap-8">
         {visibleNavLinks}
+        {isLoading && <BeatLoader size={10}></BeatLoader>}
         {user && hiddenNavLinks}
       </ul>
       <div className="justify-self-end">
-        {user ? (
+        {isLoading ? (
+          <ScaleLoader height={20}></ScaleLoader>
+        ) : user ? (
           <LoggedInUser photoURL={user.photoURL}></LoggedInUser>
         ) : (
           <AuthButtons></AuthButtons>
