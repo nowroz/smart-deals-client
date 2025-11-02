@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import navPaths from "../../navPaths/NavPaths";
+import navPaths from "../../navPaths/navPaths";
 import NavigationLink from "../navigationLink/NavigationLink";
 import AuthContext from "../../contexts/AuthContext";
 import AuthButtons from "../authButtons/AuthButtons";
