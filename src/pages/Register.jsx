@@ -24,8 +24,19 @@ const Register = () => {
       .then((userCredential) => {
         updateUserProfile(name, photoURL)
           .then(() => {
-            toast.success("Registration complete!");
-            form.reset();
+            const newUser = { name, email, image: photoURL };
+            fetch("http://localhost:3000/users", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(newUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                toast.success("Registration complete!");
+                form.reset();
+              });
           })
           .catch((error) => console.error(error.message));
       })
@@ -34,12 +45,25 @@ const Register = () => {
       });
   };
 
-  const handleSignInWithGoogle = (event) => {
-    event.preventDefault();
-
+  const handleSignInWithGoogle = () => {
     signInUserWithGoogle()
       .then((result) => {
-        toast.success("Logged in successfully!");
+        const newUser = {
+          name: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL,
+        };
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            toast.success("Registration complete!");
+          });
       })
       .catch((error) => console.error(error.message));
   };
