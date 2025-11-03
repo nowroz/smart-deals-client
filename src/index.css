@@ -32,3 +32,13 @@
   max-width: 1600px;
 }
 /* custom container styles end */
+
+/* shared styles start */
+.btn-primary {
+  @apply rounded bg-linear-to-br from-primary to-secondary text-base font-semibold text-white hover:bg-linear-to-tl cursor-pointer active:scale-[99%];
+}
+
+.btn-secondary {
+  @apply rounded  border border-l-primary border-t-primary border-b-secondary border-r-secondary text-base font-semibold bg-linear-to-br from-primary to-secondary bg-clip-text text-transparent cursor-pointer active:scale-[99%];
+}
+/* shared styles end */
