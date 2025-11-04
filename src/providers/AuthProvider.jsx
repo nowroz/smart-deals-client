@@ -27,22 +27,27 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const createUser = (email, password) => {
+    setIsLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signInUser = (email, password) => {
+    setIsLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const signInUserWithGoogle = () => {
+    setIsLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   const updateUserProfile = (displayName, photoURL) => {
+    setIsLoading(true);
     return updateProfile(auth.currentUser, { displayName, photoURL });
   };
 
   const signOutUser = () => {
+    setIsLoading(true);
     return signOut(auth);
   };
 

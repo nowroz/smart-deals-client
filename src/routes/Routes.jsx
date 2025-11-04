@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import MyProducts from "../pages/MyProducts";
 import MyBids from "../pages/MyBids";
 import CreateProduct from "../pages/CreateProduct";
+import ProductDetails from "../pages/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        loader: () => fetch("http://localhost:3000/recent-products"),
         Component: Home,
       },
       {
@@ -53,6 +55,12 @@ const router = createBrowserRouter([
             <CreateProduct></CreateProduct>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "product-details/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/products/${params.id}`),
+        Component: ProductDetails,
       },
     ],
   },
